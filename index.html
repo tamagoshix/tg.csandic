@@ -7,10 +7,8 @@
     <style>
         body { 
             margin: 0; 
-            /* Контрастный градиент: от черного к темно-серому и обратно */
             background: linear-gradient(-45deg, #000000, #333333, #000000);
             background-size: 400% 400%;
-            /* Ускорили анимацию до 8 секунд для заметности */
             animation: gradientBG 8s ease infinite;
             
             color: #fff; 
@@ -30,20 +28,37 @@
             100% { background-position: 0% 50%; }
         }
 
-        .card { text-align: center; width: 100%; max-width: 320px; }
-        h1 { font-size: 32px; letter-spacing: -2px; margin-bottom: 5px; }
+        .card { text-align: center; width: 100%; max-width: 320px; display: flex; flex-direction: column; align-items: center; }
+        
+        /* Стили для логотипа льва */
+        .lion-logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            color: #fff; /* Цвет льва - белый, чтобы выделялся */
+        }
+
+        h1 { font-size: 32px; letter-spacing: -2px; margin: 0 0 5px 0; }
         .role { font-size: 14px; color: #ccc; margin-bottom: 30px; font-weight: 300; }
         
-        .bio { font-size: 14px; color: #fff; margin-bottom: 30px; line-height: 1.6; border-top: 1px solid #555; padding-top: 20px; }
+        .bio { font-size: 14px; color: #fff; margin-bottom: 30px; line-height: 1.6; border-top: 1px solid #555; padding-top: 20px; width: 100%; }
         .bio p { margin: 5px 0; }
         
-        .btn { display: flex; align-items: center; justify-content: center; background: #fff; color: #000; text-decoration: none; padding: 16px; border-radius: 12px; font-weight: 700; margin-bottom: 12px; transition: 0.2s; font-size: 15px; }
+        .btn { display: flex; align-items: center; justify-content: center; background: #fff; color: #000; text-decoration: none; padding: 16px; border-radius: 12px; font-weight: 700; margin-bottom: 12px; transition: 0.2s; font-size: 15px; width: 100%; box-sizing: border-box;}
         .btn svg { margin-right: 10px; width: 22px; height: 22px; }
         .btn:active { transform: scale(0.97); opacity: 0.8; }
     </style>
 </head>
 <body>
     <div class="card">
+        <svg class="lion-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a10 10 0 0 1 10 10c0 1.1-.3 2.1-.8 3L22 19c.1.4-.2.8-.6.9h-3.3c-.4 0-.8-.2-1-.5l-2.1-3.2A9.9 9.9 0 0 1 12 22a10 10 0 0 1-10-10C2 6.5 6.5 2 12 2zm0 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"></path>
+            <path d="M12 6a6 6 0 1 1-6 6"></path>
+            <path d="M12 6c.4 0 .7.1 1.1.2"></path>
+            <path d="M8 12a4 4 0 1 0 8 0"></path>
+            <path d="M10 10a2 2 0 1 0 4 0"></path>
+        </svg>
+
         <h1>CSANDIC</h1>
         <p class="role">Designer & Developer</p>
         
