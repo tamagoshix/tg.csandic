@@ -6,10 +6,13 @@
     <title>CSANDIC</title>
     <style>
         body { 
-            margin: 0; 
-            background: linear-gradient(135deg, #000000, #202020, #000000); 
-            background-size: 300% 300%; 
-            animation: gradientBG 10s ease infinite; 
+            margin: 0;
+            background-color: #000;
+            /* Точечный фон */
+            background-image: radial-gradient(#fff 1px, transparent 1px);
+            background-size: 50px 50px;
+            /* Анимация проявления точек */
+            animation: dottedBG 10s ease infinite; 
             color: #fff; 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
             display: flex; 
@@ -21,10 +24,11 @@
             box-sizing: border-box; 
         }
 
-        @keyframes gradientBG { 
-            0% { background-position: 0% 50%; } 
-            50% { background-position: 100% 50%; } 
-            100% { background-position: 0% 50%; } 
+        /* Анимация для точек */
+        @keyframes dottedBG {
+            0% { background-position: 0 0; opacity: 0.7; }
+            50% { background-position: 25px 25px; opacity: 1; }
+            100% { background-position: 50px 50px; opacity: 0.7; }
         }
 
         @keyframes pulse {
@@ -49,17 +53,23 @@
         }
         .lion-img img { width: 100%; height: 100%; object-fit: cover; }
 
+        /* Статус */
         .status { font-size: 12px; color: #888; display: flex; align-items: center; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
         .dot { width: 8px; height: 8px; background: #4caf50; border-radius: 50%; margin-right: 6px; animation: pulse 2s infinite; }
-        .skill-badge { background: #222; border: 1px solid #444; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; color: #fff; margin-bottom: 30px; display: inline-block; }
-
-        h1 { font-size: 36px; letter-spacing: -2px; margin: 0 0 5px 0; font-weight: 800; }
-        .role { font-size: 15px; color: #888; margin-bottom: 10px; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; }
         
+        h1 { font-size: 36px; letter-spacing: -2px; margin: 0 0 5px 0; font-weight: 800; }
+        .role { font-size: 15px; color: #888; margin-bottom: 15px; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Навыки */
+        .skills-container { margin-bottom: 30px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+        .skill-badge { background: #222; border: 1px solid #444; padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: 600; color: #fff; }
+
+        /* Текст */
         .bio { font-size: 14px; color: #fff; margin-bottom: 30px; line-height: 1.6; border-top: 1px solid #333; border-bottom: 1px solid #333; padding: 20px 0; width: 100%; text-align: center; }
         .bio p { margin: 8px 0; }
         .bio b { color: #fff; }
         
+        /* Кнопки */
         .btn { display: flex; align-items: center; justify-content: center; background: #fff; color: #000; text-decoration: none; padding: 16px; border-radius: 12px; font-weight: 700; margin-bottom: 12px; transition: 0.2s; font-size: 15px; width: 100%; box-sizing: border-box; }
         .btn svg { margin-right: 10px; width: 20px; height: 20px; }
         .btn:active { transform: scale(0.97); opacity: 0.8; }
@@ -75,7 +85,12 @@
 
         <h1>CSANDIC</h1>
         <p class="role">Designer & Developer</p>
-        <div class="skill-badge">Python</div>
+        
+        <div class="skills-container">
+            <div class="skill-badge">Python</div>
+            <div class="skill-badge">HTML</div>
+            <div class="skill-badge">CSS</div>
+        </div>
         
         <div class="bio">
             <p>Владею пабликом <b>codesource.gg</b></p>
