@@ -18,21 +18,13 @@
 
         /* СИСТЕМА СТАТУСОВ */
         .status-container { display: flex; flex-direction: column; align-items: center; margin-bottom: 20px; }
-        
         .status-base { display: flex; align-items: center; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 8px; }
         .dot { width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; }
 
-        /* ОНЛАЙН */
-        .status-online .status-base { color: #4caf50; }
-        .status-online .dot { background: #4caf50; box-shadow: 0 0 10px #4caf50; animation: pulse 2s infinite; }
-        .status-online .attention-badge { display: none; }
-
-        /* ОФФЛАЙН */
+        /* ОФФЛАЙН (статус "Я сплю") */
         .status-offline .status-base { color: #ff3333; }
         .status-offline .dot { background: #ff3333; }
         .attention-badge { background: #ff3333; color: #fff; padding: 4px 10px; border-radius: 6px; font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
-
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4); } 70% { box-shadow: 0 0 0 6px rgba(76, 175, 80, 0); } 100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); } }
 
         /* КАРТОЧКА */
         .card { text-align: center; width: 100%; max-width: 320px; display: flex; flex-direction: column; align-items: center; z-index: 10; }
@@ -44,6 +36,9 @@
         .skill-badge { background: #222; border: 1px solid #444; padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: 600; color: #fff; }
         .bio { font-size: 14px; color: #fff; margin-bottom: 30px; line-height: 1.6; border-top: 1px solid #333; border-bottom: 1px solid #333; padding: 20px 0; width: 100%; text-align: center; }
         .btn { display: flex; align-items: center; justify-content: center; background: #fff; color: #000; text-decoration: none; padding: 16px; border-radius: 12px; font-weight: 700; margin-bottom: 12px; transition: 0.2s; font-size: 15px; width: 100%; box-sizing: border-box; }
+        
+        /* ЮРИДИЧЕСКИЙ ФУТЕР */
+        .footer { margin-top: 15px; font-size: 9px; color: #444; text-align: center; line-height: 1.3; }
     </style>
 </head>
 <body>
@@ -57,7 +52,7 @@
 
         <div class="status-container status-offline">
             <div class="status-base">
-                <span class="dot"></span>Статус: Оффлайн
+                <span class="dot"></span>Я сплю
             </div>
             <div class="attention-badge">ВНИМАНИЕ: ОТВЕЧУ ПОЗЖЕ</div>
         </div>
@@ -80,6 +75,11 @@
 
         <a href="https://t.me/csandic" class="btn">Telegram</a>
         <a href="https://vk.ru/twicebitches" class="btn">ВКонтакте</a>
+
+        <div class="footer">
+            Разработка: IN-TEX BY INTELLECTION&copy;<br>
+            Услуги предоставляются (самозанятый) ЕРОПКИН РОСТИСЛАВ ИГОРЕВИЧ ИНН 251811374790
+        </div>
     </div>
 </body>
 </html>
