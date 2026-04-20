@@ -5,126 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSANDIC</title>
     <style>
-        /* Базовые стили */
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            min-height: 100vh;
-            background-color: #000;
-            color: #fff;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            padding: 40px 20px;
-            box-sizing: border-box;
-            position: relative;
-        }
+        body, html { margin: 0; padding: 0; width: 100%; min-height: 100vh; background-color: #000; color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 40px 20px; box-sizing: border-box; }
 
-        /* --- ЭФФЕКТЫ ФОНА --- */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4t9fAAAAVFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM78SRAAAAEHRSTlMGEhMYGiIkKistMDIzODlCWVpkS0wAAACpSURBVDjL7ZPFDsAgDATL9v//m4u6pU3SkAnXN4wHwIn4IuKLiC8ivogoIrKI6B/iKCI6U5w7uYNo5E4iOnInER25k4iO3ElER+4koiN3EtGRO4noyJ1EdOROIjpyJxEduZOIjtxJRIfuJKIjdxLRkTuJ6MidRHTkTiI6cicRHbmTiI6cicRH7iSiI3cS0ZE7ieiY3EFER+4goiN3ENGRN4joT95I5A4iOnInER25/8YF2QAAAABJRU5ErkJggg==');
-            background-size: 100px 100px;
-            opacity: 0.05;
-            z-index: -1; 
-            pointer-events: none;
-        }
-
-        .flash {
-            position: fixed;
-            width: 600px; 
-            height: 600px; 
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
-            border-radius: 50%;
-            opacity: 0;
-            z-index: -2;
-            filter: blur(120px); 
-            pointer-events: none;
-        }
-
-        .flash-left {
-            top: 10vh;
-            left: -150px;
-            animation: flowLeftAnimation 24s infinite ease-in-out;
-        }
-
-        .flash-right {
-            bottom: 10vh;
-            right: -150px;
-            animation: flowRightAnimation 24s infinite ease-in-out;
-            animation-delay: 12s;
-        }
-
-        @keyframes flowLeftAnimation {
-            0%, 100% { opacity: 0; transform: scale(0.8) translate(0, 0); }
-            15% { opacity: 1; transform: scale(1) translate(50px, 30px); }
-            45%, 55% { opacity: 0; transform: scale(0.9) translate(100px, 60px); }
-        }
-
-        @keyframes flowRightAnimation {
-            0%, 100% { opacity: 0; transform: scale(0.8) translate(0, 0); }
-            15% { opacity: 1; transform: scale(1) translate(-50px, -30px); }
-            45%, 55% { opacity: 0; transform: scale(0.9) translate(-100px, -60px); }
-        }
-
-        /* --- КОНТЕНТ --- */
-        .card { 
-            text-align: center; 
-            width: 100%; 
-            max-width: 320px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            z-index: 10;
-        }
+        /* Эффекты фона */
+        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4t9fAAAAVFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM78SRAAAAEHRSTlMGEhMYGiIkKistMDIzODlCWVpkS0wAAACpSURBVDjL7ZPFDsAgDATL9v//m4u6pU3SkAnXN4wHwIn4IuKLiC8ivogoIrKI6B/iKCI6U5w7uYNo5E4iOnInER25k4iO3ElER+4koiN3EtGRO4noyJ1EdOROIjpyJxEduZOIjtxJRIfuJKIjdxLRkTuJ6MidRHTkTiI6cicRHbmTiI6cicRH7iSiI3cS0ZE7ieiY3EFER+4goiN3ENGRN4joT95I5A4iOnInER25/8YF2QAAAABJRU5ErkJggg=='); background-size: 100px 100px; opacity: 0.05; z-index: -1; pointer-events: none; }
         
-        .lion-img { 
-            width: 120px; height: 120px; margin-bottom: 25px; border-radius: 50%; background: #fff; 
-            display: flex; justify-content: center; align-items: center; overflow: hidden; box-shadow: 0 0 20px rgba(255,255,255,0.1);
-        }
+        .flash { position: fixed; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%); border-radius: 50%; opacity: 0; z-index: -2; filter: blur(120px); pointer-events: none; }
+        .flash-left { top: 10vh; left: -150px; animation: flowLeftAnimation 24s infinite ease-in-out; }
+        .flash-right { bottom: 10vh; right: -150px; animation: flowRightAnimation 24s infinite ease-in-out; animation-delay: 12s; }
+        @keyframes flowLeftAnimation { 0%, 100% { opacity: 0; transform: scale(0.8) translate(0, 0); } 15% { opacity: 1; transform: scale(1) translate(50px, 30px); } 45%, 55% { opacity: 0; transform: scale(0.9) translate(100px, 60px); } }
+        @keyframes flowRightAnimation { 0%, 100% { opacity: 0; transform: scale(0.8) translate(0, 0); } 15% { opacity: 1; transform: scale(1) translate(-50px, -30px); } 45%, 55% { opacity: 0; transform: scale(0.9) translate(-100px, -60px); } }
+
+        /* СИСТЕМА СТАТУСОВ */
+        .status-container { display: flex; flex-direction: column; align-items: center; margin-bottom: 20px; }
+        
+        .status-base { display: flex; align-items: center; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 8px; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; }
+
+        /* ОНЛАЙН */
+        .status-online .status-base { color: #4caf50; }
+        .status-online .dot { background: #4caf50; box-shadow: 0 0 10px #4caf50; animation: pulse 2s infinite; }
+        .status-online .attention-badge { display: none; }
+
+        /* ОФФЛАЙН */
+        .status-offline .status-base { color: #ff3333; }
+        .status-offline .dot { background: #ff3333; }
+        .attention-badge { background: #ff3333; color: #fff; padding: 4px 10px; border-radius: 6px; font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4); } 70% { box-shadow: 0 0 0 6px rgba(76, 175, 80, 0); } 100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); } }
+
+        /* КАРТОЧКА */
+        .card { text-align: center; width: 100%; max-width: 320px; display: flex; flex-direction: column; align-items: center; z-index: 10; }
+        .lion-img { width: 120px; height: 120px; margin-bottom: 25px; border-radius: 50%; background: #fff; display: flex; justify-content: center; align-items: center; overflow: hidden; box-shadow: 0 0 20px rgba(255,255,255,0.1); }
         .lion-img img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* Стили статуса (Оффлайн режим) */
-        .status { 
-            font-size: 12px; 
-            color: #ff3333; /* Красный цвет */
-            display: flex; 
-            flex-direction: column;
-            align-items: center; 
-            margin-bottom: 15px; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-        }
-        .dot { width: 8px; height: 8px; background: #ff3333; border-radius: 50%; margin-bottom: 6px; }
-        
-        .attention-badge {
-            background: #ff3333;
-            color: #fff;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 10px;
-            font-weight: 800;
-            margin-top: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
         h1 { font-size: 36px; letter-spacing: -2px; margin: 0 0 5px 0; font-weight: 800; }
         .role { font-size: 15px; color: #888; margin-bottom: 15px; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; }
-
         .skills-container { margin-bottom: 30px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
         .skill-badge { background: #222; border: 1px solid #444; padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: 600; color: #fff; }
-
         .bio { font-size: 14px; color: #fff; margin-bottom: 30px; line-height: 1.6; border-top: 1px solid #333; border-bottom: 1px solid #333; padding: 20px 0; width: 100%; text-align: center; }
-        .bio p { margin: 8px 0; }
-        
         .btn { display: flex; align-items: center; justify-content: center; background: #fff; color: #000; text-decoration: none; padding: 16px; border-radius: 12px; font-weight: 700; margin-bottom: 12px; transition: 0.2s; font-size: 15px; width: 100%; box-sizing: border-box; }
-        .btn:active { transform: scale(0.97); opacity: 0.8; }
     </style>
 </head>
 <body>
@@ -136,8 +55,10 @@
             <img src="lion.png" alt="Lion Logo">
         </div>
 
-        <div class="status">
-            <span class="dot"></span>Оффлайн
+        <div class="status-container status-offline">
+            <div class="status-base">
+                <span class="dot"></span>Статус: Оффлайн
+            </div>
             <div class="attention-badge">ВНИМАНИЕ: ОТВЕЧУ ПОЗЖЕ</div>
         </div>
 
@@ -155,7 +76,6 @@
             <p>Дизайн: инфографика и UI/UX</p>
             <p>Техническая настройка и сервера</p>
             <p>Гарант сделок — обращайтесь</p>
-            <p>Скоро дроп своего бренда одежды</p>
         </div>
 
         <a href="https://t.me/csandic" class="btn">Telegram</a>
