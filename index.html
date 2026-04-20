@@ -24,65 +24,55 @@
         }
 
         /* --- ЭФФЕКТЫ ФОНА --- */
-
-        /* 1. Зернистость ( Noise ) */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4t9fAAAAVFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM78SRAAAAEHRSTlMGEhMYGiIkKistMDIzODlCWVpkS0wAAACpSURBVDjL7ZPFDsAgDATL9v//m4u6pU3SkAnXN4wHwIn4IuKLiC8ivogoIrKI6B/iKCI6U5w7uYNo5E4iOnInER25k4iO3ElER+4koiN3EtGRO4noyJ1EdOROIjpyJxEduZOIjtxJRIfuJKIjdxLRkTuJ6MidRHTkTiI6cicRHbmTiI6cicRH7iSiI3cS0ZE7ieiY3EFER+4goiN3ENGRN4joT95I5A4iOnInER25/8YF2QAAAABJRU5ErkJggg==');
             background-size: 100px 100px;
-            opacity: 0.05; /* Едва заметный шум */
+            opacity: 0.05;
             z-index: -1; 
             pointer-events: none;
         }
 
-        /* 2. СУПЕР-БОЛЬШИЕ переливающиеся горошины */
         .flash {
             position: fixed;
-            /* Огромный размер для мягкого залива */
             width: 600px; 
             height: 600px; 
             background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
             border-radius: 50%;
             opacity: 0;
             z-index: -2;
-            /* Экстремальное размытие для нежности */
             filter: blur(120px); 
             pointer-events: none;
         }
 
-        /* АНИМАЦИИ ПЕРЕЛИВА */
-
-        /* Левая: Медленно разгорается и затухает */
         .flash-left {
             top: 10vh;
-            left: -150px; /* Частично за экраном */
+            left: -150px;
             animation: flowLeftAnimation 24s infinite ease-in-out;
         }
 
-        /* Правая: Начинает разгораться, когда гаснет левая */
         .flash-right {
             bottom: 10vh;
-            right: -150px; /* Частично за экраном */
+            right: -150px;
             animation: flowRightAnimation 24s infinite ease-in-out;
-            animation-delay: 12s; /* Сдвиг на половину цикла для очереди */
+            animation-delay: 12s;
         }
 
-        /* Ключевые кадры для гармоничного перетекания */
         @keyframes flowLeftAnimation {
             0%, 100% { opacity: 0; transform: scale(0.8) translate(0, 0); }
-            15% { opacity: 1; transform: scale(1) translate(50px, 30px); } /* Разгар слева */
-            45%, 55% { opacity: 0; transform: scale(0.9) translate(100px, 60px); } /* Пауза, пока работает правая */
+            15% { opacity: 1; transform: scale(1) translate(50px, 30px); }
+            45%, 55% { opacity: 0; transform: scale(0.9) translate(100px, 60px); }
         }
 
         @keyframes flowRightAnimation {
             0%, 100% { opacity: 0; transform: scale(0.8) translate(0, 0); }
-            15% { opacity: 1; transform: scale(1) translate(-50px, -30px); } /* Разгар справа */
-            45%, 55% { opacity: 0; transform: scale(0.9) translate(-100px, -60px); } /* Пауза, пока работает левая */
+            15% { opacity: 1; transform: scale(1) translate(-50px, -30px); }
+            45%, 55% { opacity: 0; transform: scale(0.9) translate(-100px, -60px); }
         }
 
-        /* --- КОНТЕНТ (БЕЗ ИЗМЕНЕНИЙ) --- */
+        /* --- КОНТЕНТ --- */
         .card { 
             text-align: center; 
             width: 100%; 
@@ -99,8 +89,30 @@
         }
         .lion-img img { width: 100%; height: 100%; object-fit: cover; }
 
-        .status { font-size: 12px; color: #888; display: flex; align-items: center; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
-        .dot { width: 8px; height: 8px; background: #4caf50; border-radius: 50%; margin-right: 6px; animation: pulse 2s infinite; }
+        /* Стили статуса (Оффлайн режим) */
+        .status { 
+            font-size: 12px; 
+            color: #ff3333; /* Красный цвет */
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            margin-bottom: 15px; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+        }
+        .dot { width: 8px; height: 8px; background: #ff3333; border-radius: 50%; margin-bottom: 6px; }
+        
+        .attention-badge {
+            background: #ff3333;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 800;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
         
         h1 { font-size: 36px; letter-spacing: -2px; margin: 0 0 5px 0; font-weight: 800; }
         .role { font-size: 15px; color: #888; margin-bottom: 15px; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; }
@@ -113,12 +125,6 @@
         
         .btn { display: flex; align-items: center; justify-content: center; background: #fff; color: #000; text-decoration: none; padding: 16px; border-radius: 12px; font-weight: 700; margin-bottom: 12px; transition: 0.2s; font-size: 15px; width: 100%; box-sizing: border-box; }
         .btn:active { transform: scale(0.97); opacity: 0.8; }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4); }
-            70% { box-shadow: 0 0 0 6px rgba(76, 175, 80, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
-        }
     </style>
 </head>
 <body>
@@ -130,7 +136,10 @@
             <img src="lion.png" alt="Lion Logo">
         </div>
 
-        <div class="status"><span class="dot"></span>Статус: Онлайн</div>
+        <div class="status">
+            <span class="dot"></span>Оффлайн
+            <div class="attention-badge">ВНИМАНИЕ: ОТВЕЧУ ПОЗЖЕ</div>
+        </div>
 
         <h1>CSANDIC</h1>
         <p class="role">Designer & Developer</p>
@@ -142,10 +151,11 @@
         </div>
         
         <div class="bio">
-            <p>Владею пабликом <b>codesource.gg</b></p>
-            <p>Развивал свою площадку игровых товаров</p>
-            <p>Работаю гарантом: безопасно и оперативно</p>
-            <p>Скоро дроп моего бренда одежды</p>
+            <p>Разработка сайтов и веб-сервисов</p>
+            <p>Дизайн: инфографика и UI/UX</p>
+            <p>Техническая настройка и сервера</p>
+            <p>Гарант сделок — обращайтесь</p>
+            <p>Скоро дроп своего бренда одежды</p>
         </div>
 
         <a href="https://t.me/csandic" class="btn">Telegram</a>
