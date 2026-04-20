@@ -27,6 +27,12 @@
             100% { background-position: 0% 50%; } 
         }
 
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4); }
+            70% { box-shadow: 0 0 0 6px rgba(76, 175, 80, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+        }
+
         .card { text-align: center; width: 100%; max-width: 320px; display: flex; flex-direction: column; align-items: center; }
         
         .lion-img { 
@@ -43,10 +49,15 @@
         }
         .lion-img img { width: 100%; height: 100%; object-fit: cover; }
 
+        /* Статус и навыки */
+        .status { font-size: 12px; color: #888; display: flex; align-items: center; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .dot { width: 8px; height: 8px; background: #4caf50; border-radius: 50%; margin-right: 6px; animation: pulse 2s infinite; }
+        .skill-badge { background: #222; border: 1px solid #444; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; color: #fff; margin-bottom: 30px; display: inline-block; }
+
         h1 { font-size: 36px; letter-spacing: -2px; margin: 0 0 5px 0; font-weight: 800; }
-        .role { font-size: 15px; color: #888; margin-bottom: 30px; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; }
+        .role { font-size: 15px; color: #888; margin-bottom: 10px; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; }
         
-        .bio { font-size: 14px; color: #fff; margin-bottom: 30px; line-height: 1.8; border-top: 1px solid #333; border-bottom: 1px solid #333; padding: 20px 0; width: 100%; }
+        .bio { font-size: 14px; color: #fff; margin-bottom: 30px; line-height: 1.6; border-top: 1px solid #333; border-bottom: 1px solid #333; padding: 20px 0; width: 100%; text-align: left; }
         .bio p { margin: 8px 0; }
         .bio b { color: #fff; }
         
@@ -61,13 +72,17 @@
             <img src="lion.png" alt="Lion Logo">
         </div>
 
+        <div class="status"><span class="dot"></span>Статус: Онлайн</div>
+
         <h1>CSANDIC</h1>
         <p class="role">Designer & Developer</p>
+        <div class="skill-badge">Python</div>
         
         <div class="bio">
-            <p>Владелец: <b>codesource.gg</b></p>
-            <p>Гарант-сервис: надежно и оперативно</p>
-            <p>Бренд одежды: готовим дроп</p>
+            <p>Владелец крупного паблика <b>codesource.gg</b></p>
+            <p>Бывший владелец площадки игровых товаров</p>
+            <p>Гарант сделок — <b>обращайтесь</b></p>
+            <p>Скоро запускаю свой бренд одежды</p>
         </div>
 
         <a href="https://t.me/csandic" class="btn">
