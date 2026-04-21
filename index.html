@@ -21,10 +21,18 @@
         .status-base { display: flex; align-items: center; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 8px; }
         .dot { width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; }
 
+        /* ОНЛАЙН (с пульсацией) */
+        .status-online .status-base { color: #4caf50; }
+        .status-online .dot { background: #4caf50; box-shadow: 0 0 10px #4caf50; animation: pulse 2s infinite; }
+        .status-online .attention-badge { display: none; }
+
         /* ОФФЛАЙН */
         .status-offline .status-base { color: #ff3333; }
         .status-offline .dot { background: #ff3333; }
         .attention-badge { background: #ff3333; color: #fff; padding: 4px 10px; border-radius: 6px; font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* АНИМАЦИЯ ПУЛЬСАЦИИ */
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4); } 70% { box-shadow: 0 0 0 6px rgba(76, 175, 80, 0); } 100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); } }
 
         /* КАРТОЧКА */
         .card { text-align: center; width: 100%; max-width: 320px; display: flex; flex-direction: column; align-items: center; z-index: 10; }
@@ -50,9 +58,9 @@
             <img src="lion.png" alt="Lion Logo">
         </div>
 
-        <div class="status-container status-offline">
+        <div class="status-container status-online">
             <div class="status-base">
-                <span class="dot"></span>Сплю
+                <span class="dot"></span>Статус: Онлайн
             </div>
             <div class="attention-badge">ВНИМАНИЕ: ОТВЕЧУ ПОЗЖЕ</div>
         </div>
