@@ -3,91 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSANDIC</title>
+    <title>csandic | Визитка</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        body, html { margin: 0; padding: 0; width: 100%; min-height: 100vh; background-color: #000; color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 40px 20px; box-sizing: border-box; }
+        /* Базовые настройки страницы */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Глубокий темный фон */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #ffffff;
+        }
 
-        /* Эффекты фона */
-        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4t9fAAAAVFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM78SRAAAAEHRSTlMGEhMYGiIkKistMDIzODlCWVpkS0wAAACpSURBVDjL7ZPFDsAgDATL9v//m4u6pU3SkAnXN4wHwIn4IuKLiC8ivogoIrKI6B/iKCI6U5w7uYNo5E4iOnInER25k4iO3ElER+4koiN3EtGRO4noyJ1EdOROIjpyJxEduZOIjtxJRIfuJKIjdxLRkTuJ6MidRHTkTiI6cicRHbmTiI6cicRH7iSiI3cS0ZE7ieiY3EFER+4goiN3ENGRN4joT95I5A4iOnInER25/8YF2QAAAABJRU5ErkJggg=='); background-size: 100px 100px; opacity: 0.05; z-index: -1; pointer-events: none; }
-        
-        .flash { position: fixed; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%); border-radius: 50%; opacity: 0; z-index: -2; filter: blur(120px); pointer-events: none; }
-        .flash-left { top: 10vh; left: -150px; animation: flowLeftAnimation 24s infinite ease-in-out; }
-        .flash-right { bottom: 10vh; right: -150px; animation: flowRightAnimation 24s infinite ease-in-out; animation-delay: 12s; }
-        @keyframes flowLeftAnimation { 0%, 100% { opacity: 0; transform: scale(0.8) translate(0, 0); } 15% { opacity: 1; transform: scale(1) translate(50px, 30px); } 45%, 55% { opacity: 0; transform: scale(0.9) translate(100px, 60px); } }
-        @keyframes flowRightAnimation { 0%, 100% { opacity: 0; transform: scale(0.8) translate(0, 0); } 15% { opacity: 1; transform: scale(1) translate(-50px, -30px); } 45%, 55% { opacity: 0; transform: scale(0.9) translate(-100px, -60px); } }
+        /* Контейнер карточки */
+        .card {
+            background-color: #1e293b;
+            width: 100%;
+            max-width: 320px;
+            padding: 40px 30px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
 
-        /* СИСТЕМА СТАТУСОВ */
-        .status-container { display: flex; flex-direction: column; align-items: center; margin-bottom: 20px; }
-        .status-base { display: flex; align-items: center; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 8px; }
-        .dot { width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; }
+        .card:hover {
+            transform: translateY(-5px);
+        }
 
-        /* ОНЛАЙН (с пульсацией) */
-        .status-online .status-base { color: #4caf50; }
-        .status-online .dot { background: #4caf50; box-shadow: 0 0 10px #4caf50; animation: pulse 2s infinite; }
-        .status-online .attention-badge { display: none; }
+        /* Настройки аватара (твоей картинки) */
+        .avatar-container {
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 20px;
+            background-color: #ffffff; /* Белый фон, чтобы черного льва было хорошо видно */
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 4px solid #38bdf8; /* Голубая обводка */
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+            overflow: hidden;
+        }
 
-        /* ОФФЛАЙН */
-        .status-offline .status-base { color: #ff3333; }
-        .status-offline .dot { background: #ff3333; }
-        .attention-badge { background: #ff3333; color: #fff; padding: 4px 10px; border-radius: 6px; font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+        .avatar-container img {
+            width: 85%;
+            height: 85%;
+            object-fit: contain;
+        }
 
-        /* АНИМАЦИЯ ПУЛЬСАЦИИ */
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4); } 70% { box-shadow: 0 0 0 6px rgba(76, 175, 80, 0); } 100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); } }
+        /* Текстовые элементы */
+        h1 {
+            margin: 0 0 5px 0;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
 
-        /* КАРТОЧКА */
-        .card { text-align: center; width: 100%; max-width: 320px; display: flex; flex-direction: column; align-items: center; z-index: 10; }
-        .lion-img { width: 120px; height: 120px; margin-bottom: 25px; border-radius: 50%; background: #fff; display: flex; justify-content: center; align-items: center; overflow: hidden; box-shadow: 0 0 20px rgba(255,255,255,0.1); }
-        .lion-img img { width: 100%; height: 100%; object-fit: cover; }
-        h1 { font-size: 36px; letter-spacing: -2px; margin: 0 0 5px 0; font-weight: 800; }
-        .role { font-size: 15px; color: #888; margin-bottom: 15px; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; }
-        .skills-container { margin-bottom: 30px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
-        .skill-badge { background: #222; border: 1px solid #444; padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: 600; color: #fff; }
-        .bio { font-size: 14px; color: #fff; margin-bottom: 30px; line-height: 1.6; border-top: 1px solid #333; border-bottom: 1px solid #333; padding: 20px 0; width: 100%; text-align: center; }
-        .btn { display: flex; align-items: center; justify-content: center; background: #fff; color: #000; text-decoration: none; padding: 16px; border-radius: 12px; font-weight: 700; margin-bottom: 12px; transition: 0.2s; font-size: 15px; width: 100%; box-sizing: border-box; }
-        
-        /* ЮРИДИЧЕСКИЙ ФУТЕР */
-        .footer { margin-top: 15px; font-size: 9px; color: #444; text-align: center; line-height: 1.3; }
+        p.subtitle {
+            margin: 0 0 30px 0;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        /* Ссылки (Кнопки) */
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.2s ease;
+        }
+
+        /* Стили для Telegram */
+        .btn-tg {
+            background-color: #2AABEE;
+            box-shadow: 0 4px 15px rgba(42, 171, 238, 0.3);
+        }
+
+        .btn-tg:hover {
+            background-color: #2298D6;
+            box-shadow: 0 6px 20px rgba(42, 171, 238, 0.4);
+        }
+
+        /* Стили для VK */
+        .btn-vk {
+            background-color: #0077FF;
+            box-shadow: 0 4px 15px rgba(0, 119, 255, 0.3);
+        }
+
+        .btn-vk:hover {
+            background-color: #0066DB;
+            box-shadow: 0 6px 20px rgba(0, 119, 255, 0.4);
+        }
+
+        /* Иконки в кнопках */
+        .btn svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            fill: currentColor;
+        }
     </style>
 </head>
 <body>
-    <div class="flash flash-left"></div>
-    <div class="flash flash-right"></div>
 
     <div class="card">
-        <div class="lion-img">
-            <img src="lion.png" alt="Lion Logo">
-        </div>
-
-        <div class="status-container status-online">
-            <div class="status-base">
-                <span class="dot"></span>Статус: Онлайн
-            </div>
-            <div class="attention-badge">ВНИМАНИЕ: ОТВЕЧУ ПОЗЖЕ</div>
-        </div>
-
-        <h1>CSANDIC</h1>
-        <p class="role">Designer & Developer</p>
-        
-        <div class="skills-container">
-            <div class="skill-badge">Python</div>
-            <div class="skill-badge">HTML</div>
-            <div class="skill-badge">CSS</div>
+        <div class="avatar-container">
+            <img src="image.png" alt="Логотип льва">
         </div>
         
-        <div class="bio">
-            <p>Разработка сайтов и веб-сервисов</p>
-            <p>Дизайн: инфографика и UI/UX</p>
-            <p>Техническая настройка и сервера</p>
-            <p>Гарант сделок — обращайтесь</p>
-        </div>
+        <h1>csandic</h1>
+        <p class="subtitle">Добро пожаловать в мой профиль</p>
 
-        <a href="https://t.me/csandic" class="btn">Telegram</a>
-        <a href="https://vk.ru/twicebitches" class="btn">ВКонтакте</a>
+        <div class="links-container">
+            <a href="https://t.me/csandic" target="_blank" class="btn btn-tg">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-1.9 8.95c-.14.62-.51.77-1.03.48l-2.85-2.1-1.38 1.33c-.15.15-.28.28-.57.28l.2-2.9 5.28-4.78c.23-.21-.05-.33-.36-.12l-6.53 4.11-2.8-.88c-.61-.19-.62-.61.13-.9l10.94-4.22c.5-.19.95.11.87.85z"/>
+                </svg>
+                Telegram
+            </a>
 
-        <div class="footer">
-            Разработка: IN-TEX BY INTELLECTION&copy;<br>
-            Услуги предоставляются: ЕРОПКИН РОСТИСЛАВ ИГОРЕВИЧ ИНН 251811374790
+            <a href="https://vk.com/twicebitches" target="_blank" class="btn btn-vk">
+                <svg viewBox="0 0 24 24">
+                    <path d="M15.077 2H8.923C3.385 2 2 3.385 2 8.923v6.154C2 20.615 3.385 22 8.923 22h6.154C20.615 22 22 20.615 22 15.077V8.923C22 3.385 20.615 2 15.077 2zm2.846 13.5c.346.462.692.885 1.077 1.269.23.23.461.423.808.423h1.615c.154 0 .23 0 .308-.077.077-.077.115-.192.038-.346-.269-.538-.615-1-1.038-1.423-.385-.385-.77-.808-1.077-1.269-.154-.154-.192-.308-.077-.5.154-.308.615-.885.885-1.346.346-.538.654-1.077.808-1.654.077-.23 0-.346-.23-.346h-1.846c-.23 0-.346.077-.462.23-.192.423-.423.846-.692 1.231-.385.615-.808 1.154-1.346 1.577-.154.154-.308.23-.462.154-.154-.077-.23-.23-.23-.538V10.154c0-.346-.115-.538-.346-.615-.346-.077-.808-.115-1.423-.115-1.038 0-1.846.115-2.231.538-.154.154-.115.346.077.385.5.077.846.308.846.962v3.192c0 .385-.115.538-.308.538-.5-.115-1.038-.692-1.462-1.308-.423-.654-.808-1.423-1.077-2.231-.115-.308-.269-.385-.538-.385H6.385c-.346 0-.462.154-.462.346 0 .423.538 2.5 1.615 4.077 1.077 1.5 2.538 2.385 4.115 2.385 1.038 0 1.269-.23 1.269-.654v-1.5c0-.269.077-.385.23-.423.154-.038.385 0 .692.308z"/>
+                </svg>
+                ВКонтакте
+            </a>
         </div>
     </div>
+
 </body>
 </html>
